@@ -1,5 +1,4 @@
-﻿
-@using FoodStore.Models;
+﻿@using FoodStore.Models;
 @using PagedList.Mvc;
 @model PagedList.PagedList<FoodStore.Models.Product>
 
@@ -7,8 +6,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-
 
 <style>
     .img {
@@ -35,39 +32,34 @@
     }
 </style>
 
+<div class="">
+    <h5 class="text-center text-3xl font-weight-bolder p-3" style="background-color : beige">Quản Lý Sản Phẩm </h5>
 
-        <div class="">
-            <h5 class="text-center text-3xl font-weight-bolder p-3" style="background-color : beige">Quản Lý Sản Phẩm </h5>
+    <p>
+        @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-success" })
+    </p>
+    <button id="deleteSelected" class="btn btn-danger">Xóa các mục đã chọn</button>
+</div>
 
-            <p>
-                @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-succses" })
-            </p>
-
-        </div>
-       
 <table class="table">
     <tr style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 10px; border-radius: 5px ">
         <th>
-            Tên sản phẩm
+            <input type="checkbox" id="selectAll" />
         </th>
-        <th>
-            Mô tả
-        </th>
-        <th>
-            Giá
-        </th>
-        <th>
-            Hình ảnh
-        </th>
-        <th>
-            Tên danh mục
-        </th>
+        <th>Tên sản phẩm</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Hình ảnh</th>
+        <th>Tên danh mục</th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                <input type="checkbox" class="selectItem" value="@item.ProductId" />
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
@@ -78,22 +70,16 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-
                 <img src="~/Content/Images/@item.Image" width="150px" class="img" />
             </td>
-
             <td>
                 <a href="/Admin/Product/Edit/@item.ProductId"><i class="fa-solid fa-pen-to-square b"></i></a>
                 <a href="/Admin/Product/Details/@item.ProductId"><i class="fa-solid fa-circle-info g"></i></a>
-                <a href="/Admin/Product/Delete/@item.ProductId" class="Delete"><i class="fa-solid fa-trash r"></i></a>
+                <a href="/Admin/Product/Delete/@item.ProductId" id="Delete"><i class="fa-solid fa-trash r"></i></a>
             </td>
         </tr>
     }
-
 </table>
-
-
-
 
 <div class="list">
     <div class="MenuTrang">
@@ -101,12 +87,43 @@
     </div>
 </div>
 <script src="~/Scripts/Delete.js"></script>
-<style>
-    .MenuTrang {
-        margin-top: 500px;
-        display: inline;
-        text-align: center;
-        width: 100%;
-    }
-</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" integrity="sha512-U3Q2T60uOxOgtAmm9VEtC3SKGt9ucRbvZ+U3ac/wtvNC+K21Id2dNHzRUC7Z4Rs6dzqgXKr+pCRxx5CyOsnUzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        $('#selectAll').click(function () {
+            $('.selectItem').prop('checked', this.checked);
+        });
+
+        $('#deleteSelected').click(function () {
+            var selectedIds = $('.selectItem:checked').map(function () {
+                return $(this).val();
+            }).get();
+
+            if (selectedIds.length === 0) {
+                bootbox.alert("Vui lòng chọn ít nhất một sản phẩm để xóa.");
+                return;
+            }
+
+            bootbox.confirm("Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?", function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("DeleteSelected", "Product")',
+                        data: { ids: selectedIds },
+                        traditional: true,
+                        success: function (response) {
+                            if (response.success) {
+                                location.reload();
+                            } else {
+                                bootbox.alert("Đã xảy ra lỗi khi xóa các sản phẩm.");
+                            }
+                        },
+                        error: function () {
+                            bootbox.alert("Đã xảy ra lỗi khi xóa các sản phẩm.");
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

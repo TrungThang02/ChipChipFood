@@ -1,10 +1,10 @@
-﻿$(document).on('click', '.Delete', function (e) {
+﻿$(document).on('click', '#Delete', function (e) {
     var link = $(this).attr("href");
     e.preventDefault();
 
 
     bootbox.confirm({
-        title: "Xóa sản phẩm",
+        title: "Xóa mục này",
         message: "Bạn có chắc chắn muốn xóa nó ?",
         buttons: {
             cancel: {

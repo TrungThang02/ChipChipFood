@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -118,9 +120,41 @@ namespace FoodStore.Areas.Admin.Controllers
         public ActionResult Delete(int id)
         {
             Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            if (customer == null)
+            {
+                // Nếu không tìm thấy khách hàng
+                return HttpNotFound();
+            }
+
+            try
+            {
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                // Kiểm tra lỗi liên quan đến ràng buộc khóa ngoại
+                if (ex.InnerException != null && ex.InnerException.InnerException is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Mã lỗi SQL Server cho lỗi ràng buộc khóa ngoại
+                    {
+                        TempData["ErrorMessage"] = "Không thể xóa khách hàng này do có dữ liệu liên quan trong hệ thống.";
+                    }
+                    else
+                    {
+                        TempData["ErrorMessage"] = "Đã xảy ra lỗi khi xóa khách hàng.";
+                    }
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Đã xảy ra lỗi khi xóa khách hàng.";
+                }
+
+                // Trả về View với thông báo lỗi
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

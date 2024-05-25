@@ -62,7 +62,13 @@
                     @Html.DropDownList("MaCD", null, new{@class = "form-control" })
                 </div>
             </div>
-           
+            <div class="form-group">
+                <label class="control-label col-md-2">Số lượng:</label>
+                <div class="col-md-10">
+                    <input type="number" min="1" required name="iSoLuong"
+                           value="@ViewBag.SoLuong" class="form-control" />
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Thêm mới" class="btn btn-success" />

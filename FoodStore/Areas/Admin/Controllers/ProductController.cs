@@ -99,8 +99,8 @@ namespace FoodStore.Areas.Admin.Controllers
                     p.ProductName = f["sTenSach"];
                     p.Description = f["sMoTa"].Replace("<p>", "").Replace("</p>", "\n");
                     p.Image = sFileName;
-                   
-                   
+
+                    p.Count = int.Parse(f["iSoLuong"]);
                     p.Price = decimal.Parse(f["mDonGia"]);
                     p.CategoryId = int.Parse(f["MaCD"]);
                  
@@ -217,6 +217,29 @@ namespace FoodStore.Areas.Admin.Controllers
             db.Products.Remove(p);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteSelected(int[] ids)
+        {
+            if (ids == null || ids.Length == 0)
+            {
+                return Json(new { success = false, message = "No items selected" });
+            }
+
+            try
+            {
+                var products = db.Products.Where(p => ids.Contains(p.ProductId)).ToList();
+                foreach (var product in products)
+                {
+                    db.Products.Remove(product);
+                }
+                db.SaveChanges();
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
 
         protected override void Dispose(bool disposing)
