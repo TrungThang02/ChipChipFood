@@ -1,0 +1,74 @@
+﻿@model IEnumerable<FoodStore.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    p {
+        width: 300px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+<h3>Quản lý bình luận khách hàng</h3>
+
+
+<table class="table">
+    <tr style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 10px; border-radius: 5px ">
+        <th>
+            Comment
+        </th>
+        <th>
+            Ngày
+        </th>
+        <th>
+            Tên người dùng
+        </th>
+      
+        <th>
+           Đánh giá
+        </th>
+        
+        <th>
+          Sản phẩm
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentMsg)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.ParentID)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+
+                <a href="/Admin/Comments/Details/@item.ID"><i class="fa-solid fa-circle-info g"></i></a>
+                <a href="/Admin/Comments/Delete/@item.ID" class="Delete"><i class="fa-solid fa-trash r"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/Delete.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" integrity="sha512-U3Q2T60uOxOgtAmm9VEtC3SKGt9ucRbvZ+U3ac/wtvNC+K21Id2dNHzRUC7Z4Rs6dzqgXKr+pCRxx5CyOsnUzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

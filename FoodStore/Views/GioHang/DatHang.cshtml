@@ -1,0 +1,254 @@
+﻿@using FoodStore.Models
+@{
+    ViewBag.Title = "ĐƠN ĐẶT HÀNG";
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+}
+<style>
+    .gh {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    .pd {
+        margin-left: 20px;
+    }
+
+    .td {
+        display: flex;
+        align-items: center;
+    }
+
+        .td img {
+            align-items: center;
+            border-radius: 1rem;
+        }
+
+    .table-borderless {
+        align-items: center;
+        margin: 0;
+    }
+
+    .name {
+        display: block;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .textgh {
+        align-items: center;
+    }
+
+    .tx2 {
+        font-weight: 500;
+        font-size: 15px;
+        margin-right: 25px;
+        font-weight: bold;
+        color: #648b72;
+    }
+
+    .tx1 {
+        padding: 25px;
+        font-weight: 500;
+        font-size: 17px;
+    }
+
+    .img-gh {
+        height: 100px;
+        width: 200px;
+        object-fit: cover;
+    }
+
+    .pay {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+        .pay a {
+            margin: 20px;
+        }
+</style>
+@{ Customer kh = (Customer)Session["cmt"]; }
+@foreach (var item in Model)
+{
+    <center>
+        <div class="container mt-5 mb-5">
+
+            <div class="row gh">
+                <div class="col-md-8">
+
+                    <div class="card">
+                        <div class="product border-bottom table-responsive">
+
+                            <table class="table table-borderless">
+
+                                <tbody>
+                                    <tr>
+                                        <td width="20%" class="td">
+
+                                            <img src="~/Content/Images/@item.productImg" class="img-gh">
+
+                                        </td>
+
+                                        <td width="60%" style="vertical-align: inherit">
+                                            <div class="name">
+                                                <div class="textgh">
+                                                    <span class="font-weight-bold tx tx1">Tên món : @item.productName</span>
+                                                </div>
+                                                <div class="textgh">
+                                                    <span class="font-weight-bold tx tx1">Số lượng : @item.productQuantity</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td width="20%" style="vertical-align: inherit">
+                                            <div class="text-center">
+                                                <span class="font-weight-bold tx2">@item.productPrice đ</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+}
+
+<div class="row gh">
+
+    <div class="col-md-5">
+
+        <table class="table table-borderless">
+
+            <tbody class="totals">
+
+                <tr>
+                    <td>
+                        <div class="text-left">
+
+                            <span class="text-muted">Tổng tiền hàng: </span>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <span>@ViewBag.TongTienHang</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="text-left">
+
+                            <span class="text-muted">Phí giao hàng: </span>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <span>@ViewBag.PhiShip</span>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        <div class="text-left">
+
+                            <span class="text-muted">Tổng số lượng: </span>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <span class="text-success">@ViewBag.TongSoLuong</span>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr class="border-top border-bottom">
+                    <td>
+                        <div class="text-left">
+
+                            <span class="font-weight-bold">Thành tiền: </span>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="text-right">
+                            <span class="font-weight-bold">@ViewBag.TongTien đ</span>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<table align="center" style="margin : 0 auto">
+    @using (Html.BeginForm())
+    {@Html.ValidationSummary(true)
+    <tr style="height:40px;"><td>Họ tên khách hàng:</td><td style="font-weight:bold">@kh.CustomerName</td></tr>
+    <tr style="height:40px;"><td>Địa chỉ:</td><td style="font-weight:bold">@kh.Address</td></tr>
+    <tr style="height:40px;"><td>Điện thoại:</td><td style="font-weight:bold">@kh.Phone</td></tr>
+    <tr style="height:40px;">
+        <td>Ngày đặt:</td>
+        <td style="font-weight:bold">@DateTime.Now.ToShortDateString()</td>
+    </tr>
+    @*<tr style="height:40px;">
+        <td>Ngày giao:</td>
+        <td style="font-weight:bold">
+            <input type="date" name="NgayGiao" @ViewData["err"] />
+        </td>
+    </tr>*@
+
+    <center>
+        <div>
+            <button type="submit" class="btn btn-success">Thanh toán khi nhận hàng</button>
+        </div>
+    </center>
+
+}
+</table>
+
+
+
+
+
+    <h4 style="text-align: center">Thanh toán Online</h4>
+    <div class="pay">
+        <a href="@Url.Action("PaymentWithPaypal","Paypal")"><img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="Alternate Text" width="100px" /></a>
+
+        <a href="@Url.Action("Payment","MoMo")"><img src="https://images.viblo.asia/ae87b957-f016-45c0-9c29-34b34a9b3262.png" alt="Alternate Text" width="100px" /></a>
+    </div>
+    @section GioHang{
+
+
+        <script src="~/Scripts/Cart.js"></script>
+    }

@@ -1,0 +1,112 @@
+﻿
+@using FoodStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<FoodStore.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<style>
+    .img {
+        border-radius: 10px;
+        height: 110px;
+        object-fit: cover;
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    }
+
+    td {
+        vertical-align: baseline;
+        align-items: center;
+    }
+
+    th {
+        font-weight: bolder;
+    }
+
+    p {
+        width: 300px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+</style>
+
+
+        <div class="">
+            <h5 class="text-center text-3xl font-weight-bolder p-3" style="background-color : beige">Quản Lý Sản Phẩm </h5>
+
+            <p>
+                @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-succses" })
+            </p>
+
+        </div>
+       
+<table class="table">
+    <tr style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 10px; border-radius: 5px ">
+        <th>
+            Tên sản phẩm
+        </th>
+        <th>
+            Mô tả
+        </th>
+        <th>
+            Giá
+        </th>
+        <th>
+            Hình ảnh
+        </th>
+        <th>
+            Tên danh mục
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <p> @Html.Raw(item.Description).ToString()</p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+
+                <img src="~/Content/Images/@item.Image" width="150px" class="img" />
+            </td>
+
+            <td>
+                <a href="/Admin/Product/Edit/@item.ProductId"><i class="fa-solid fa-pen-to-square b"></i></a>
+                <a href="/Admin/Product/Details/@item.ProductId"><i class="fa-solid fa-circle-info g"></i></a>
+                <a href="/Admin/Product/Delete/@item.ProductId" class="Delete"><i class="fa-solid fa-trash r"></i></a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+<div class="list">
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "Product", new { page = page }))
+    </div>
+</div>
+<script src="~/Scripts/Delete.js"></script>
+<style>
+    .MenuTrang {
+        margin-top: 500px;
+        display: inline;
+        text-align: center;
+        width: 100%;
+    }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" integrity="sha512-U3Q2T60uOxOgtAmm9VEtC3SKGt9ucRbvZ+U3ac/wtvNC+K21Id2dNHzRUC7Z4Rs6dzqgXKr+pCRxx5CyOsnUzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -1,0 +1,56 @@
+﻿
+@using FoodStore.Models
+@{ var kh = Session["TaiKhoan"]; }
+
+@{var kh2 = Session["TaiKhoan2"];}
+
+<style>
+    .info{
+        display : inline-block;
+        justify-content : center;
+      
+
+
+    }
+   
+    .header-links li a:hover{
+        color : greenyellow;
+    }
+</style>
+@if (Session["TaiKhoan"] == null)
+{
+    <ul class="header-links pull-right">
+        <li><a href="~/User/DangNhap?id=1"><i style="color : white" class="fa fa-user-o"></i>Tài khoản</a></li>
+    </ul>
+}
+else
+{
+<ul class="header-links pull-right">
+    <div class="dropdown flex-column">
+        <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="@Url.Action("QuanLiThongTin","User")" style="color:white;font-size : 12px; font-weight : 500"><span style="color : white" class="fa fa-user"></span> Xin chào:@kh</a>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="info">
+    <li><a style="color: black !important" href="/User/ThayDoiThongTin/@kh2">Đổi thông tin</a></li>
+
+    <li><a style="color: black !important"  href="/GioHang/LichSuMuaHang/@kh2">Lịch sử mua hàng</a></li>
+
+    <li>
+        <a style="color: black !important"  href="@Url.Action("DangXuat","User")">
+            <span class="fa fa-sign-out "></span> Đăng xuất
+
+        </a>
+    </li>
+    </div>
+
+    </div>
+
+    </div>
+
+
+
+
+</ul>
+
+}

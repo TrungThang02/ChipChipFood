@@ -1,0 +1,58 @@
+﻿<!-- container -->
+<style>
+    .responsive-nav {
+    }
+
+    li {
+        margin: 0.625rem;
+        margin-right: 2rem;
+        color: white;
+    }
+
+    .a {
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+
+    #navigation {
+        position: sticky !important;
+        top: 0px;
+        z-index: 100;
+        box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+        justify-content: center;
+    }
+
+    .submenu {
+        color: black;
+    }
+
+    .ctgr {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+<div class="navigation">
+    <div class="container ">
+        <div id="responsive-nav">
+
+            <ul class="main-nav nav navbar-nav">
+
+                <li class="@(Request.Url.ToString().Substring(Request.Url.ToString().LastIndexOf('/')+1) == "" ? "active " : "")"><a href="~/" class="submenu">Trang chủ</a></li>
+                @foreach (var d in ViewBag.danhmuc)
+                {
+
+                    <li onclick="myFunction()" class="@(Request.Url.ToString().Substring(Request.Url.ToString().LastIndexOf('/')+1) == d.CategoryLink ? "active " : "") navitem" data-id="@d.CategoryLink" id="@d.CategoryLink"><a href="~/Products/@d.CategoryLink" class="submenu">@d.CategoryName</a></li>
+
+                }
+
+
+            </ul>
+        </div>
+
+    </div>
+</div>

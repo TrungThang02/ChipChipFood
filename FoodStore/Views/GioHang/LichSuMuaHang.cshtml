@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FoodStore.Models.Order>
+
+@{
+    ViewBag.Title = "LichSuMuaHang";
+    Layout = "~/Views/Shared/_LayoutProduct.cshtml";
+}
+<style>
+    .lsmh{
+        margin-top : 2rem;
+    }
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 20px;
+    }
+</style>
+
+<div class="container lsmh">
+    <h4 align="center">Lịch sử mua hàng</h4>
+
+
+    <table class="table">
+        <tr style="box-shadow: rgba(0, 0, 0, 0.14) 0px 3px 3px 0px; padding : 10px;">
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeliveryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.RecipientPhone)
+            </th>
+            
+            <th>
+               Tên người nhận
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecipientPhone)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                </td>*@
+            </tr>
+        }
+
+    </table>
+</div>

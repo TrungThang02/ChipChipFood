@@ -1,0 +1,57 @@
+﻿@using FoodStore.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 align="center" style="text-transform : uppercase">Danh sách sản phẩm</h4>
+@foreach (var p in Model)
+{
+    <!-- product -->
+    <div class="col-sm-4 col-md-4 col-lg-4 col-xs-6">
+
+        <div class="product">
+            <a href="~/Products/ChiTietSanPham/@p.ProductId">
+                <div class="product-img">
+                    <img src="~/Content/Images/@p.Image" alt="" class="img-product">
+                    @*<div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                </div>*@
+                </div>
+                <div class="product-body">
+                    @*<p class="product-category">Category</p>*@
+                    <h3 class="product-name"><a href="~/Products/ChiTietSanPham/@p.ProductId">@p.ProductName</a></h3>
+                    <h4 class="product-price">@String.Format("{0:0,00}", @p.Price)đ@*<del class="product-old-price">@p.Price</del>*@</h4>
+
+                    <!--<div class="product-btns">
+            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">Yêu thích</span></button>-->
+                    @*<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>*@
+                    <!--<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Xem chi tiết</span></button>
+            </div>-->
+                </div>
+            </a>
+
+
+            <div class="add-to-cart">
+                <button class="add-to-cart-btn" data-id="@p.ProductId" id="@($"btn{p.ProductId}")">
+
+                    <span class="@($"text{p.ProductId}")" href="@Url.Action("ThemGioHang","GioHang",new { idproduct = p.ProductId })">
+                        <i class="fa fa-shopping-cart"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+@*Tạo liên kết các trang*@
+
+
+
+
+@section GioHang{
+
+    <script src="~/Scripts/Cart.js"></script>
+
+}

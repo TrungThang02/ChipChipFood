@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FoodStore.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h5 class="text-center text-3xl font-weight-bolder p-3" style="background-color : beige">Quản Lý Đơn Hàng </h5>
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 10px; border-radius: 5px ">
+
+        <th>
+            Tên khách
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Giá
+        </th>
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderPrice)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.OrderState)
+                </td>*@
+
+            <td>
+
+                <a href="/Admin/Orders/Details/@item.OrderId"><i class="fa-solid fa-circle-info g"></i></a>
+                @*<a href="/Admin/Orders/Delete/@item.OrderId" class="Delete"><i class="fa-solid fa-trash r"></i></a>*@
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" integrity="sha512-U3Q2T60uOxOgtAmm9VEtC3SKGt9ucRbvZ+U3ac/wtvNC+K21Id2dNHzRUC7Z4Rs6dzqgXKr+pCRxx5CyOsnUzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

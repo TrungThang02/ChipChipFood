@@ -1,0 +1,91 @@
+﻿@model FoodStore.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Areas/Admin/Content/ckeditor/ckeditor.js"></script>
+<style>
+    .im {
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+
+        .im img {
+            border-radius: 10px;
+        }
+</style>
+
+
+
+@*Thêm thuộc tính cho form để upload ảnh*@
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new
+{
+    @enctype =
+"multipart/form-data"
+}))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />
+
+    <h4>Chỉnh sửa</h4>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Mã món ăn:</label>
+        <div class="col-md-10">
+            @*Chỉ hiển thị mã sách không cho sửa*@
+            <input type="text" size="70" name="iMaSach"  value="@Model.ProductId" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Tên sản phẩm:</label>
+        <div class="col-md-10">
+            <input type="text" size="70" name="sTenSach" value="@Model.ProductName"
+                   required class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Mô tả:</label>
+        <div class="col-md-10">
+
+
+            <textarea name="sMoTa" @*id="Description"*@ class="form-control"><p>@Model.Description.Replace("\n", "</p><p>")</p> </textarea>
+            <script>
+                CKEDITOR.replace("Description");
+            </script>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Hình ảnh:</label>
+        <div class="col-md-10">
+            <input type="file" name="fFileUpload" multiple="multiple" accept="image/*" class="form-control" />
+        </div>
+        <div class="im">
+            <img src="~/Content/Images/@Model.Image" width="300"> (Ảnh hiện tại)
+        </div>
+    </div>
+
+
+</div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Giá bán:</label>
+        <div class="col-md-10">
+            <input type="number" min="1" required name="mDonGia"
+                   value="@Model.Price" class="form-control" placeholder="@Model.Price" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-success" />
+            @Html.ActionLink("Về trang chủ", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+        </div>
+
+    </div>
+
+}
+
+</div>

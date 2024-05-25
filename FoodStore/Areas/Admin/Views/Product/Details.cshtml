@@ -1,0 +1,68 @@
+﻿@model FoodStore.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h3>Chi tiết món</h3>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="~/Content/Images/@Model.Image" width="300">
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+  
+  
+</p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ProductId }, htmlAttributes: new { @class = "btn btn-success" })
+        @Html.ActionLink("Về trang chủ", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+    </div>
+
+</div>

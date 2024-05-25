@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Chip Chip Food - Cửa hàng thức ăn nhanh </title>
+    <link rel="website icon" type="png" href="https://www.rawshorts.com/freeicons/wp-content/uploads/2017/01/orange_travelpictdinner_1484336833.png" />
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <!-- Slick -->
+    <link type="text/css" rel="stylesheet" href="~/Content/css/slick.css" />
+    <link type="text/css" rel="stylesheet" href="~/Content/css/slick-theme.css" />
+    <!-- nouislider -->
+    <link type="text/css" rel="stylesheet" href="~/Content/css/nouislider.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="~/Content/css/style.css" />
+    @*<link href="~/Content/css/AboutPartial.css" rel="stylesheet" />*@
+    <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
+
+    <style type='text/css'>
+        #bttop {
+            background: #ff0000;
+            text-align: center;
+            padding: 5px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 10px;
+            border-radius: 5px;
+            transition: 1s;
+            color: #FFF;
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+            #bttop:hover {
+                transition: 1s all ease-in-out;
+                background: #ff6734;
+            }
+    </style>
+    @*<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' type='text/javascript'></script>*@
+
+    @*<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>*@
+   
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <!-- TOP HEADER -->
+        @Html.Action("NavbarPartial", "Home")
+    </header>
+    <!-- /HEADER -->
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+        @Html.Action("NavigationPartial", "Home")
+        <!-- /container -->
+    </nav>
+    <!-- /NAVIGATION -->
+    <!-- SECTION -->
+
+    <div class="bn">
+        @Html.Action("BannerPartial", "Home")
+    </div>
+    <!-- /SECTION -->
+    <!-- SECTION -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            @Html.Action("TabCategoryPartial", "Home")
+            @RenderBody()
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /SECTION -->
+    <!-- HOT DEAL SECTION -->
+    <div id="hot-deal" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 dtb">
+                    <div class="img-box">
+                        <img src="https://static.vecteezy.com/system/resources/previews/027/254/408/non_2x/delicious-burger-full-hd-fast-food-png.png" width="400px" />
+                    </div>
+                </div>
+                <div class="col-md-6 dtb">
+                    <div class="detail-box ">
+                        <div class="heading_container">
+                            <h1 style="color: #f7bf55">
+                                Chip Chip <span style="font-family: 'Caramel', cursive; font-size : 50px">Food</span>
+                            </h1>
+                        </div>
+                        <p style="font-size : 15px;">
+                            Mang đến cho quý khách hàng nhiều sự lựa chọn với nhiều món ăn ngon và chất lượng, giá thành ổn định phù hợp với túi tiền...
+                        </p>
+
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /HOT DEAL SECTION -->
+    <!-- SECTION -->
+    <!-- /SECTION -->
+    <!-- SECTION -->
+    @Html.Action("ContactPartial", "Home")
+
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            @Html.Action("TopSellingPartial", "Home")
+
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /NEWSLETTER -->
+    <!-- FOOTER -->
+    <footer id="footer">
+        <!-- top footer -->
+        <div class="section">
+            <!-- container -->
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">VỀ CHÚNG TÔI</h3>
+                            <p style="color: #23468b">Chip Chip Food</p>
+                            <ul class="footer-links">
+                                <li><a href="#"><i class="fa fa-map-marker"></i>397 Lê Hồng Phong, khu 8, Phú Hoà, TDM, Bình Dương</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i>0988-137-638</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i>thanhhuyenvule1992@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">DANH MỤC SẢN PHẨM</h3>
+                            <ul class="footer-links">
+                                <li><a href="@Url.Action("ThucAnNhe","Products")">Thức ăn nhẹ</a></li>
+                                <li><a href="@Url.Action("Gà rán","Products")">Gà rán</a></li>
+                                <li><a href="@Url.Action("Burger","Products")">Burger</a></li>
+                                <li><a href="@Url.Action("TrangMieng","Products")">Tráng miệng</a></li>
+                                <li><a href="@Url.Action("Combo","Products")">Combo</a></li>
+                                <li><a href="@Url.Action("DoUong","Products")">Đồ uống</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">THÔNG TIN</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Về chúng tôi</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Điều khoản dịch vụ</a></li>
+                                <li><a href="#">Trả hàng và đặt hàng</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-xs-6">
+                        <div class="footer">
+                            <h3 class="footer-title">DỊCH VỤ</h3>
+                            <ul class="footer-links">
+                                <li><a href="#">Tài khoản của tôi</a></li>
+                                <li><a href="#">Xem giỏ hàng</a></li>
+                                <li><a href="#">Danh mục yêu thích</a></li>
+                                <li><a href="#">Theo dõi đơn hàng</a></li>
+                                <li><a href="#">Hỗ trợ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /top footer -->
+        <!-- bottom footer -->
+        <div id="bottom-footer" class="section">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-md-12 text-center">
+
+                        <span class="copyright" style="color:#fff; padding: 20px; margin-top : 0">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" style="color:#fff">ChipChipFood</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+    <!-- /FOOTER -->
+    <!-- jQuery Plugins -->
+
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/slick.min.js"></script>
+    @*<script src="~/Content/js/nouislider.min.js"></script>*@
+    @*<script src="~/Content/js/jquery.zoom.min.js"></script>*@
+    <script src="~/Content/js/main.js"></script>
+    @*<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>*@
+    @*<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+
+
+    <script src="~/Content/js/About.js"></script>
+    @RenderSection("GioHang", required: false)
+
+    @RenderSection("script", required: false)
+    @RenderSection("navigation", required: false)
+
+    <!-- Messenger Plugin chat Code -->
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+
+
+</body>
+
+</html>

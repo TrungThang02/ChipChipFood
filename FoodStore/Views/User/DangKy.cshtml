@@ -1,0 +1,224 @@
+﻿@model FoodStore.Models.Customer
+@{
+    Layout = null;
+}
+
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <!--Made with love by Mutiullah Samim -->
+    <!--Bootsrap 4 CDN-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!--Fontawesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!--Custom styles-->
+    <style>
+        /* Made with love by Mutiullah Samim*/
+
+@*@import url('https://fonts.googleapis.com/css?family=Numans');*@
+
+        html, body {
+            background: url('../../Content/Images/bg-login.jpg') center center/cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
+
+.container {
+    height: 100%;
+    align-content: center;
+}
+
+        .card {
+            height: 350x;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        }
+
+.social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+}
+
+    .social_icon span:hover {
+        color: white;
+        cursor: pointer;
+    }
+
+.card-header h3 {
+    color: #1F3BB3;
+    text-transform : uppercase;
+    font-size : 20px;
+    font-weight : 400;
+}
+
+.social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+        .input-group-prepend span {
+            background-color: #1F3BB3;
+            color: black;
+            border: 0 !important;
+            color: #fff;
+            width: 50px;
+            justify-content: center;
+            align-items: center;
+        }
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.remember {
+    color: white;
+}
+
+    .remember input {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+        margin-right: 5px;
+    }
+
+        .login_btn {
+            color: black;
+            background-color: #1F3BB3;
+            width: 100px;
+        }
+
+    .login_btn:hover {
+        color: black;
+        background-color: chocolate;
+        color : #fff;
+        font-weight : bold;
+        transition : 0.3s;
+        
+    }
+
+.links {
+    color: white;
+}
+
+    .links a {
+        margin-left: 4px;
+    }
+       .message {
+           color : red;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center h-100">
+            <div class="card" style="height: 700px !important;">
+                <div class="card-header">
+                    <h3 style="text-align : center">Đăng ký tài khoản</h3>
+
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            </div>
+                            @Html.TextBox("HoTen", null, new { @class = "form-control", placeholder = "Họ và tên", required = "required" })
+                        </div>
+                        <div class="message">@ViewData["err1"]</div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                            </div>
+                            @Html.TextBox("TenDN", null, new { @class = "form-control", placeholder = "Tên đăng nhập", required = "required" })
+
+                        </div>
+                        <div class="message">@ViewData["err2"]</div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            </div>
+                            @Html.Password("MatKhau", null, new { @class = "form-control", placeholder = "Mật khẩu", required = "required" })
+                        </div>
+                        <div class="message">@ViewData["err3"]</div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
+                            </div>
+                            @Html.Password("MatKhauNL", null, new { @class = "form-control", placeholder = "Nhập lại mật khẩu", required = "required" })
+
+                        </div>
+                        <div class="message">@ViewData["err4"]</div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-calendar"></i></span>
+                            </div>
+                            @Html.TextBox("NgaySinh", null, new { @type = "date", @class = "form-control", placeholder = "Nhập lại mật khẩu", required = "required" })
+                        </div>
+
+                        <div class="message">@ViewData["err4"]</div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                            </div>
+                            @Html.TextBox("Email", null, new { @class = "form-control", placeholder = "Email", type = "email", required = "required" })
+                        </div>
+                        <div class="message">@ViewData["err5"]</div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-solid fa-location-dot"></i></span>
+                            </div>
+                            @Html.TextArea("DiaChi", null, new { @class = "form-control", placeholder = "Địa chỉ", required = "required" })
+                        </div>
+                        <div class="message">@ViewData["err6"]</div>
+
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa-sharp fa-solid fa-phone"></i></span>
+                            </div>
+                            @Html.TextBox("DienThoai", null, new { @class = "form-control", placeholder = "Số điện thoại", type = "number", required = "required" })
+                        </div>
+                        <div class="message">@ViewData["err7"]</div>
+
+
+
+                        <div class="form-group d-flex justify-content-center">
+                            <input type="submit" value="Đăng ký" class="btn text-center login_btn">
+                        </div>
+                        <div class="message">@ViewData["err8"]</div>
+                        <div class="message">@ViewData["err9"]</div>
+                        <div style="color: green">@ViewData["success"]</div>
+
+                    }
+
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links" style="color : red;">
+                        Nếu bạn đã có tài khoản? <a href="~/User/DangNhap?id=1">Đăng nhập</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

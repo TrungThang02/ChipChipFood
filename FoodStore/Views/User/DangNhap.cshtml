@@ -1,0 +1,135 @@
+﻿@model FoodStore.Models.Customer
+@{
+    Layout = null;
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+<!------ Include the above in your HEAD tag ---------->
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>-->
+<!--Made with love by Mutiullah Samim -->
+<!--Bootsrap 4 CDN-->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+<!--Fontawesome CDN-->
+<!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+<style>
+    /* Made with love by Mutiullah Samim*/-->
+@*@import url('https://fonts.googleapis.com/css?family=Numans');*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Đăng nhập </title>
+    <!-- plugins:css -->
+
+    <link rel="stylesheet" href="~/Areas/Admin/Content//css/vertical-layout-light/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="~/Areas/Admin/Content/mages/favicon.png" />
+    <style>
+        body {
+            background: #333;
+        }
+
+        .content-wrapper {
+            background: url('../../Content/Images/bg-login.jpg') center center/cover;
+        }
+
+        .auth-form-light {
+            border-radius: 10px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+        }
+
+        .form-control-lg {
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h3 align="center" style="margin-bottom : 20px;">Đăng nhập</h3>
+                                <h6 class="fw-light"></h6>
+                                <form class="pt-3">
+                                    <div class="form-group">
+                                        @Html.TextBox("TenDN", null, new { @class = "form-control form-control-lg", placeholder = "Tài khoản", required = "required" })  @ViewData["Err2"]
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Password("MatKhau", null, new { @class = "form-control form-control-lg", placeholder = "Mật khẩu", required = "required" })  @ViewData["Err2"]
+
+                                    </div>
+                                    <p style="color: red">@ViewBag.Message</p>
+                                    <p style="color: red">@ViewBag.ThongBao</p>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">ĐĂNG NHẬP</button>
+                                    </div>
+                                    <div class="my-2 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+
+                                        </div>
+                                    </div>
+                                    <div class="my-2 d-flex justify-content-between align-items-center">
+                                        <div class="form-check">
+                                            <label class="form-check-label text-muted">
+                                                <input type="checkbox" class="form-check-input">
+                                                Lưu tài khoản
+                                            </label>
+                                        </div>
+                                        <a href="@Url.Action("ForgotPassword","User")" class="auth-link text-black">Quên mật khẩu?</a>
+                                    </div>
+                                    <div class="text-center mt-4 fw-light">
+                                        Nếu bạn chưa có tài khoản ? <a href="~/User/DangKy" class="text-primary">Đăng ký ngay</a>
+                                    </div>
+
+                                </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Areas/Admin/Content/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="~/Areas/Admin/Content/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+
+    <script src="~/Areas/Admin/Content/js/template.js"></script>
+
+    <!-- endinject -->
+</body>
+
+</html>
